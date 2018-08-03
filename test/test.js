@@ -34,6 +34,17 @@ describe('Array', function() {
       assert.equal(eventHappened, true);
     })
   }),
+  // describe('emit', function() {
+  //   it('should receive arguments from emit call', function() {
+  //     let callBack = function(data){eventResult = data.toReturn},
+  //         eventResult = '',
+  //         data = {toReturn : 'It Worked!'};
+  //
+  //     eventer.on('emit', callBack);
+  //     eventer.emit('emit', data);
+  //     assert.equal(eventResult, 'It Worked!');
+  //   })
+  // }),
   describe('emit', function() {
     it('should handle multiple listeners for one event', function() {
       let callBack = function(){eventHappened = true},
@@ -46,6 +57,21 @@ describe('Array', function() {
       eventer.emit('emit');
       assert.equal(eventHappened, true);
       assert.equal(otherEventHappened, true);
+    })
+  }),
+  describe('removeAllListeners', function() {
+    it('should remove all custom event listeners', function() {
+      let callBack = function(){eventHappened = true},
+          callBack2 = function(){otherEventHappened = true},
+          otherEventHappened = false,
+          eventHappened = false;
+
+      eventer.on('emit', callBack);
+      eventer.on('emit', callBack2);
+      eventer.removeAllListeners();
+      eventer.emit('emit');
+      assert.equal(eventHappened, false);
+      assert.equal(otherEventHappened, false);
     })
   })
 });
