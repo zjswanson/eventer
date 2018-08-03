@@ -33,5 +33,19 @@ describe('Array', function() {
       eventer.emit('emit');
       assert.equal(eventHappened, true);
     })
+  }),
+  describe('emit', function() {
+    it('should handle multiple listeners for one event', function() {
+      let callBack = function(){eventHappened = true},
+          callBack2 = function(){otherEventHappened = true},
+          otherEventHappened = false,
+          eventHappened = false;
+
+      eventer.on('emit', callBack);
+      eventer.on('emit', callBack2);
+      eventer.emit('emit');
+      assert.equal(eventHappened, true);
+      assert.equal(otherEventHappened, true);
+    })
   })
 });
