@@ -1,0 +1,30 @@
+{
+  "name": "eventer",
+  "version": "1.0.0",
+  "description": "basic node event emitter",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zjswanson/eventer.git"
+  },
+  "keywords": [
+    "event",
+    "emitter"
+  ],
+  "author": "Zach Swanson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zjswanson/eventer/issues"
+  },
+  "homepage": "https://github.com/zjswanson/eventer#readme"
+}
