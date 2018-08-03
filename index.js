@@ -22,6 +22,10 @@ class Eventer {
     }
   };
 
+  once(eventName, callBack) {
+    
+  };
+
 //validate inputs
   emit(eventName,data) {
     if (eventName) {

@@ -2,7 +2,7 @@ var assert = require('assert');
 var eventer = require('../index.js');
 
 describe('Eventer', function() {
-  beforeEach(function() {
+  afterEach(function() {
     eventer.removeAllListeners();
   });
 
@@ -75,6 +75,30 @@ describe('Eventer', function() {
       eventer.emit('emit');
       assert.equal(eventHappened, true);
       assert.equal(otherEventHappened, false);
+    })
+  }),
+  describe('emit', function() {
+    it('should fire listener once for each emit', function() {
+      let callBack = function(){eventCount++},
+          eventCount = 0;
+
+      eventer.on('emit', callBack);
+      eventer.emit('emit');
+      eventer.emit('emit');
+      eventer.emit('emit');
+      assert.equal(eventCount, 3);
+    })
+  }),
+  describe('once', function() {
+    it('should fire listener no more than once', function() {
+      let callBack = function(){eventCount++},
+          eventCount = 0;
+
+      eventer.once('emit', callBack);
+      eventer.emit('emit');
+      eventer.emit('emit');
+      eventer.emit('emit');
+      assert.equal(eventCount, 1);
     })
   }),
   describe('removeAllListeners', function() {
