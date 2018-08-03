@@ -63,6 +63,20 @@ describe('Eventer', function() {
       assert.equal(otherEventHappened, true);
     })
   }),
+  describe('emit', function() {
+    it('should only trigger listeners when event is emitted', function() {
+      let callBack = function(){eventHappened = true},
+          callBack2 = function(){otherEventHappened = true},
+          otherEventHappened = false,
+          eventHappened = false;
+
+      eventer.on('emit', callBack);
+      eventer.on('emit2', callBack2);
+      eventer.emit('emit');
+      assert.equal(eventHappened, true);
+      assert.equal(otherEventHappened, false);
+    })
+  }),
   describe('removeAllListeners', function() {
     it('should remove all custom event listeners', function() {
       let callBack = function(){eventHappened = true},
@@ -74,6 +88,22 @@ describe('Eventer', function() {
       eventer.on('emit', callBack2);
       eventer.removeAllListeners();
       eventer.emit('emit');
+      assert.equal(eventHappened, false);
+      assert.equal(otherEventHappened, false);
+    })
+  }),
+  describe('removeListener', function() {
+    it('should remove listeners for a specific event', function() {
+      let callBack = function(){eventHappened = true},
+          callBack2 = function(){otherEventHappened = true},
+          otherEventHappened = false,
+          eventHappened = false;
+
+      eventer.on('emit', callBack);
+      eventer.on('emit2', callBack2);
+      eventer.removeListener('emit');
+      eventer.emit('emit');
+      eventer.emit('emit2');
       assert.equal(eventHappened, false);
       assert.equal(otherEventHappened, false);
     })

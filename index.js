@@ -43,6 +43,4 @@ class Eventer {
 }
 
 let eventer = new Eventer();
-
-
 module.exports = eventer;
