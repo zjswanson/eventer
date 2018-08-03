@@ -14,6 +14,16 @@ describe('Array', function() {
       assert.equal(eventer.events['test'].includes(callBack), true);
     })
   }),
+  describe('on', function() {
+    it('should register multiple listeners', function() {
+      const callBack = function(){console.log('testing');},
+            callBack2 = function(){console.log('testing again');};
+      eventer.on('test', callBack);
+      eventer.on('test', callBack2);
+      assert.equal(eventer.events['test'].includes(callBack), true);
+      assert.equal(eventer.events['test'].includes(callBack2), true);
+    })
+  }),
   describe('emit', function() {
     it('should emit a custom event and fire listeners', function() {
       let callBack = function(){eventHappened = true},
