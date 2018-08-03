@@ -36,6 +36,10 @@ class Eventer {
     }
   }
 
+  removeAllListeners() {
+    this.events = {};
+  }
+
 }
 
 let eventer = new Eventer();
