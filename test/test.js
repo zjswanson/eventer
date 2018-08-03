@@ -14,18 +14,37 @@ describe('Eventer', function() {
   describe('on', function() {
     it('should register a custom listener', function() {
       const callBack = function(){console.log('testing');};
+            foundCallBack = false;
       eventer.on('test', callBack);
-      assert.equal(eventer.events['test'].includes(callBack), true);
+      eventer.events['test'].forEach(function(listener) {
+        if (listener.callBack == callBack) {
+          foundCallBack = true;
+        }
+      });
+
+      assert.equal(foundCallBack, true);
     })
   }),
   describe('on', function() {
     it('should register multiple listeners', function() {
       const callBack = function(){console.log('testing');},
             callBack2 = function(){console.log('testing again');};
+      let foundCallBack1 = false,
+          foundCallBack2 = false;
+
       eventer.on('test', callBack);
       eventer.on('test', callBack2);
-      assert.equal(eventer.events['test'].includes(callBack), true);
-      assert.equal(eventer.events['test'].includes(callBack2), true);
+
+      eventer.events['test'].forEach(function(listener) {
+        if (listener.callBack == callBack) {
+          foundCallBack = true;
+        } else if (listener.callBack == callBack2) {
+          foundCallBack2 = true;
+        }
+      });
+
+      assert.equal(foundCallBack, true);
+      assert.equal(foundCallBack2, true);
     })
   }),
   describe('emit', function() {

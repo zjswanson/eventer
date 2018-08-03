@@ -7,6 +7,13 @@
 
     TODO add error throwing, validate inputs, consider how to do once method (maybe listeners have a class with a prop for how many times they can fire), check test cases are broad enough
 */
+class Listener {
+  constructor(callBack, callOnce) {
+    this.callBack = callBack;
+    this.callOnce = callOnce || false;
+  }
+}
+
 
 class Eventer {
   constructor() {
@@ -15,15 +22,16 @@ class Eventer {
   };
 
 //still needs to validate that callback is a function, event is a string, probs other stuff
-  on(eventName, callback) {
-    if (callback) {
+  on(eventName, callBack) {
+    if (callBack) {
       this.events[eventName] = this.events[eventName] || [];
-      this.events[eventName].push(callback);
+      let listener = new Listener(callBack, false);
+      this.events[eventName].push(listener);
     }
   };
 
   once(eventName, callBack) {
-    
+
   };
 
 //validate inputs
@@ -31,9 +39,9 @@ class Eventer {
     if (eventName) {
       let listeners = this.events[eventName];
       if (listeners) {
-        listeners.forEach(function(listener) {
-          if (typeof listener == 'function') {
-            listener(data);
+        listeners.forEach(function(listener, index, listeners) {
+          if (typeof listener.callBack == 'function') {
+            listener.callBack(data);
           }
         })
       }
