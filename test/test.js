@@ -1,7 +1,11 @@
 var assert = require('assert');
 var eventer = require('../index.js');
 
-describe('Array', function() {
+describe('Eventer', function() {
+  beforeEach(function() {
+    eventer.removeAllListeners();
+  });
+
   describe('Eventer', function() {
     it('should have the name "eventer"', function() {
       assert.equal(eventer.name, "eventer");
@@ -34,17 +38,17 @@ describe('Array', function() {
       assert.equal(eventHappened, true);
     })
   }),
-  // describe('emit', function() {
-  //   it('should receive arguments from emit call', function() {
-  //     let callBack = function(data){eventResult = data.toReturn},
-  //         eventResult = '',
-  //         data = {toReturn : 'It Worked!'};
-  //
-  //     eventer.on('emit', callBack);
-  //     eventer.emit('emit', data);
-  //     assert.equal(eventResult, 'It Worked!');
-  //   })
-  // }),
+  describe('emit', function() {
+    it('should receive arguments from emit call', function() {
+      let callBack = function(data){eventResult = data.toReturn},
+          eventResult = '',
+          data = {toReturn : 'It Worked!'};
+
+      eventer.on('emit', callBack);
+      eventer.emit('emit', data);
+      assert.equal(eventResult, 'It Worked!');
+    })
+  }),
   describe('emit', function() {
     it('should handle multiple listeners for one event', function() {
       let callBack = function(){eventHappened = true},
