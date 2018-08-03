@@ -11,7 +11,7 @@ describe('Array', function() {
     it('should register a custom listener', function() {
       const callBack = function(){console.log('testing');};
       eventer.on('test', callBack);
-      assert.equal(eventer.listeners['test'].includes(callback));
+      assert.equal(eventer.listeners['test'].includes(callBack), true);
     })
   })
 });
