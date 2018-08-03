@@ -101,11 +101,11 @@ describe('Eventer', function() {
 
       eventer.on('emit', callBack);
       eventer.on('emit2', callBack2);
-      eventer.removeListener('emit');
+      eventer.removeListeners('emit');
       eventer.emit('emit');
       eventer.emit('emit2');
       assert.equal(eventHappened, false);
-      assert.equal(otherEventHappened, false);
+      assert.equal(otherEventHappened, true);
     })
   })
 });

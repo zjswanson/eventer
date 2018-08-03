@@ -12,7 +12,7 @@ class Eventer {
   constructor() {
     this.name = 'eventer';
     this.events = {};
-  }
+  };
 
 //still needs to validate that callback is a function, event is a string, probs other stuff
   on(eventName, callback) {
@@ -20,7 +20,7 @@ class Eventer {
       this.events[eventName] = this.events[eventName] || [];
       this.events[eventName].push(callback);
     }
-  }
+  };
 
 //validate inputs
   emit(eventName,data) {
@@ -34,11 +34,17 @@ class Eventer {
         })
       }
     }
-  }
+  };
 
   removeAllListeners() {
     this.events = {};
-  }
+  };
+
+  removeListeners(eventName) {
+    if (eventName){
+      this.events[eventName] = [];
+    }
+  };
 
 }
 
