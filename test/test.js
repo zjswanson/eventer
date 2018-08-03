@@ -7,11 +7,21 @@ describe('Array', function() {
       assert.equal(eventer.name, "eventer");
     });
   }),
-  describe('Eventer', function() {
+  describe('on', function() {
     it('should register a custom listener', function() {
       const callBack = function(){console.log('testing');};
       eventer.on('test', callBack);
-      assert.equal(eventer.listeners['test'].includes(callBack), true);
+      assert.equal(eventer.events['test'].includes(callBack), true);
+    })
+  }),
+  describe('emit', function() {
+    it('should emit a custom event and fire listeners', function() {
+      let callBack = function(){eventHappened = true},
+          eventHappened = false;
+
+      eventer.on('emit', callBack);
+      eventer.emit('emit');
+      assert.equal(eventHappened, true);
     })
   })
 });

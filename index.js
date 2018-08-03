@@ -9,15 +9,19 @@
 class Eventer {
   constructor() {
     this.name = 'eventer';
-    this.listeners = {};
+    this.events = {};
   }
 
 //still needs to validate that callback is a function, event is a string, probs other stuff
-  on(event, callback) {
+  on(eventName, callback) {
     if (callback) {
-      this.listeners[event] = this.listeners[event] || [];
-      this.listeners[event].push(callback);
+      this.events[eventName] = this.events[eventName] || [];
+      this.events[eventName].push(callback);
     }
+  }
+
+  emit(eventName,data) {
+    
   }
 
 }
