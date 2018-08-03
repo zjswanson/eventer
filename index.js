@@ -14,7 +14,6 @@ class Listener {
   }
 }
 
-
 class Eventer {
   constructor() {
     this.name = 'eventer';
@@ -22,16 +21,17 @@ class Eventer {
   };
 
 //still needs to validate that callback is a function, event is a string, probs other stuff
-  on(eventName, callBack) {
+  on(eventName, callBack, callOnce = false) {
     if (callBack) {
       this.events[eventName] = this.events[eventName] || [];
-      let listener = new Listener(callBack, false);
+      let listener = new Listener(callBack, callOnce);
       this.events[eventName].push(listener);
     }
   };
 
+//convenience method for calling a handler no more than once
   once(eventName, callBack) {
-
+    this.on(eventName, callBack, true);
   };
 
 //validate inputs
@@ -39,11 +39,16 @@ class Eventer {
     if (eventName) {
       let listeners = this.events[eventName];
       if (listeners) {
-        listeners.forEach(function(listener, index, listeners) {
+        let listenersToKeep = [];
+        listeners.forEach(function(listener) {
           if (typeof listener.callBack == 'function') {
             listener.callBack(data);
           }
-        })
+          if (!listener.callOnce) {
+            listenersToKeep.push(listener);
+          }
+        });
+        this.events[eventName] = listenersToKeep;
       }
     }
   };

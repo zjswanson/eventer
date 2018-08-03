@@ -120,6 +120,22 @@ describe('Eventer', function() {
       assert.equal(eventCount, 1);
     })
   }),
+  describe('once', function() {
+    it("shouldn't interfere with other listeners on the event", function() {
+      let callOnce = function(){onceCount++},
+          callABunch = function(){bunchCount++},
+          onceCount = 0;
+          bunchCount = 0;
+
+      eventer.once('emit', callOnce);
+      eventer.on('emit', callABunch);
+      eventer.emit('emit');
+      eventer.emit('emit');
+      eventer.emit('emit');
+      assert.equal(onceCount, 1);
+      assert.equal(bunchCount, 3);
+    })
+  }),
   describe('removeAllListeners', function() {
     it('should remove all custom event listeners', function() {
       let callBack = function(){eventHappened = true},
