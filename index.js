@@ -23,7 +23,7 @@ class Eventer {
 //still needs to validate that callback is a function, event is a string, probs other stuff
   on(eventName, callBack, callOnce = false) {
     if (!eventName) {
-      throw new SyntaxError("must specifc the name of event to emit");
+      throw new SyntaxError("must specifc the name of event to listen");
     } else if (typeof eventName != 'string') {
       let errMessage = "expected argument 1 to be of type string.  recieved type of " + typeof eventName;
       throw new TypeError(errMessage);
@@ -79,11 +79,17 @@ class Eventer {
   };
 
   removeListeners(eventName) {
+    if (!eventName) {
+      throw new SyntaxError("must specifc the name of event to remove");
+    } else if (typeof eventName != 'string') {
+      let errMessage = "expected argument 1 to be of type string.  recieved type of " + typeof eventName;
+      throw new TypeError(errMessage);
+    }
+
     if (eventName){
       this.events[eventName] = [];
     }
   };
-
 }
 
 let eventer = new Eventer();

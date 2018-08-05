@@ -57,7 +57,7 @@ describe('Eventer', function() {
         }
       );
     })
-  })
+  }),
   describe('emit', function() {
     it('should emit a custom event and fire listeners', function() {
       let callBack = function(){eventHappened = true},
@@ -172,7 +172,7 @@ describe('Eventer', function() {
       assert.equal(otherEventHappened, false);
     })
   }),
-  describe('removeListener', function() {
+  describe('removeListeners', function() {
     it('should remove listeners for a specific event', function() {
       let callBack = function(){eventHappened = true},
           callBack2 = function(){otherEventHappened = true},
@@ -186,6 +186,17 @@ describe('Eventer', function() {
       eventer.emit('emit2');
       assert.equal(eventHappened, false);
       assert.equal(otherEventHappened, true);
+    })
+  }),
+  describe('removeListeners', function() {
+    it('should error if given missing or invalid argument', function() {
+      assert.throws(
+        () => {
+          eventer.on('test', ()=> {console.log('test function')});
+          eventer.removeListeners('');
+          eventer.removeListeners(4);
+        }
+      );
     })
   })
 });
