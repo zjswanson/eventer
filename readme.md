@@ -43,20 +43,25 @@ creates a custom event and registers an event listener to be fired when the even
 - callBack = <Function> that will be run when the event is emitted.  Recieves an object with data from the call to emit()
 - runOnce(optional) = <Boolean> if true, this will remove this listener after the first time it is run.  Defaults to false.
 
+
 ##### eventer.once(eventName, callBack)
 Convenience method for registering single use event listeners.  Equivalent to eventer.on(eventName, callback, true).
+
 
 ##### eventer.emit(eventName, [data])
 Emits a custom event.  Has no effect if the event has not been registered through eventer.on().
 - eventName = <String> Name of the custom event to emit.
 - data(optional) = <Object> optional object of arbitrary data.  Will be passed as the only argument to any calback registered with eventer.on().
 
+
 ##### eventer.removeAllListeners()
 removes all custom events and listeners that have been registered to this instance of Eventer.
+
 
 ##### eventer.removeListeners(eventName)
 removes all listeners that have been registered to this event name.
 - eventName = <String> Name of the custom event to emit.
+
 
 ---
 
