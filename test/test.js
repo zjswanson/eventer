@@ -108,6 +108,15 @@ describe('Eventer', function() {
       assert.equal(eventCount, 3);
     })
   }),
+  describe('emit', function() {
+    it('should error with bad arguments', function() {
+      // eventer.on('emit', callBack);
+      // eventer.emit('emit');
+      // eventer.emit('emit');
+      // eventer.emit('emit');
+      assert.throws(() => eventer.emit('test'));
+    })
+  }),
   describe('once', function() {
     it('should fire listener no more than once', function() {
       let callBack = function(){eventCount++},
