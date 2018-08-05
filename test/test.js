@@ -47,6 +47,17 @@ describe('Eventer', function() {
       assert.equal(foundCallBack2, true);
     })
   }),
+  describe('on', function() {
+    it('should error if given missing or onvalid arguments', function() {
+      assert.throws(
+        () => {
+          eventer.on('', ()=> {console.log('test function')});
+          eventer.on('test', "function!");
+          eventer.on('test');
+        }
+      );
+    })
+  })
   describe('emit', function() {
     it('should emit a custom event and fire listeners', function() {
       let callBack = function(){eventHappened = true},
