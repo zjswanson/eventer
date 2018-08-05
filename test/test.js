@@ -1,5 +1,5 @@
-var assert = require('assert');
-var eventer = require('../index.js');
+const assert = require('assert');
+const eventer = require('../index.js');
 
 describe('Eventer', function() {
   afterEach(function() {

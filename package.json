@@ -1,6 +1,6 @@
 {
-  "name": "eventer",
-  "version": "1.0.0",
+  "name": "eventer-zjs",
+  "version": "0.9.0",
   "description": "basic node event emitter",
   "main": "index.js",
   "directories": {
