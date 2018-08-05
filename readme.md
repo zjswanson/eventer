@@ -28,6 +28,8 @@ $ npm update --dev
 ```
 This assumes that you have left the `/test` folder at the same level in your directory as the `/node_modules` folder.  If not, you may need to modify the path for requiring eventer on the first line of `test.js`.
 
+---
+
 ### Usage
 
 To get started, just require eventer:
@@ -42,20 +44,21 @@ creates a custom event and registers an event listener to be fired when the even
 - runOnce(optional) = <Boolean> if true, this will remove this listener after the first time it is run.  Defaults to false.
 
 ##### eventer.once(eventName, callBack)
-Convenience method for registering single use event listeners.  Equivalent to eventer.on(eventName, callback, true)
+Convenience method for registering single use event listeners.  Equivalent to eventer.on(eventName, callback, true).
 
 ##### eventer.emit(eventName, [data])
 Emits a custom event.  Has no effect if the event has not been registered through eventer.on().
-- eventName = <String> Name of the custom event to emit
-- data(optional) = <Object> optional object of arbitrary data.  Will be passed as the only argument to any calback registered with eventer.on()
-- 
+- eventName = <String> Name of the custom event to emit.
+- data(optional) = <Object> optional object of arbitrary data.  Will be passed as the only argument to any calback registered with eventer.on().
 
 ##### eventer.removeAllListeners()
 removes all custom events and listeners that have been registered to this instance of Eventer.
 
 ##### eventer.removeListeners(eventName)
 removes all listeners that have been registered to this event name.
-- eventName = <String> Name of the custom event to emit
+- eventName = <String> Name of the custom event to emit.
+
+---
 
 ### License and Usage Notes
 Eventer is provided under the [MIT](https://opensource.org/licenses/MIT).  No need to attribute me.  If this somehow is useful to you or inspires your work, that's great.  Go nuts with it and I accept no credit or liability for what you build.  There are, however, two important usage notes:
