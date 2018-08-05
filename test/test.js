@@ -109,12 +109,13 @@ describe('Eventer', function() {
     })
   }),
   describe('emit', function() {
-    it('should error with bad arguments', function() {
-      // eventer.on('emit', callBack);
-      // eventer.emit('emit');
-      // eventer.emit('emit');
-      // eventer.emit('emit');
-      assert.throws(() => eventer.emit('test'));
+    it('should error with missing or non-string argument', function() {
+      assert.throws(
+        () => {
+          eventer.emit('');
+          eventer.emit(4);
+        }
+      );
     })
   }),
   describe('once', function() {

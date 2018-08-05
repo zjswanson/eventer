@@ -35,21 +35,30 @@ class Eventer {
   };
 
 //validate inputs
-  emit(eventName,data) {
-    if (eventName) {
-      let listeners = this.events[eventName];
-      if (listeners) {
-        let listenersToKeep = [];
-        listeners.forEach(function(listener) {
-          if (typeof listener.callBack == 'function') {
+  emit(eventName, data) {
+    if (!eventName) {
+      throw new SyntaxError("must specifc the name of event to emit");
+    } else if (typeof eventName != 'string') {
+      let errMessage = "expected argument 1 to be of type string.  recieved type of " + typeof eventName;
+      throw new TypeError(errMessage);
+    }
+
+    let listeners = this.events[eventName];
+    if (listeners) {
+      let listenersToKeep = [];
+      listeners.forEach(function(listener) {
+        if (typeof listener.callBack == 'function') {
+          if (data) {
             listener.callBack(data);
+          } else {
+            listener.callBack();
           }
-          if (!listener.callOnce) {
-            listenersToKeep.push(listener);
-          }
-        });
-        this.events[eventName] = listenersToKeep;
-      }
+        }
+        if (!listener.callOnce) {
+          listenersToKeep.push(listener);
+        }
+      });
+      this.events[eventName] = listenersToKeep;
     }
   };
 
