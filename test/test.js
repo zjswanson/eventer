@@ -48,7 +48,7 @@ describe('Eventer', function() {
     })
   }),
   describe('on', function() {
-    it('should error if given missing or onvalid arguments', function() {
+    it('should error if given missing or invalid arguments', function() {
       assert.throws(
         () => {
           eventer.on('', ()=> {console.log('test function')});
