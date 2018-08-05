@@ -47,7 +47,7 @@ Convenience method for registering single use event listeners.  Equivalent to ev
 ##### eventer.emit(eventName, [data])
 Emits a custom event.  Has no effect if the event has not been registered through eventer.on().
 - eventName = <String> Name of the custom event to emit
-- data(optional) = <Object> optional object of arbitrary data.  Will be passed as the only argument to any calback registered with eventer.on().
+- data(optional) = <Object> optional object of arbitrary data.  Will be passed as the only argument to any calback registered with eventer.on()
 
 ##### eventer.removeAllListeners()
 removes all custom events and listeners that have been registered to this instance of Eventer.
